@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://kit.fontawesome.com/6301555d54.js" crossorigin="anonymous"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.3/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.3/firebase-auth.js"></script>
     <link rel="stylesheet" href="example.css">
     <title>Login</title>
 </head>
@@ -12,11 +14,11 @@
         <div class="signup">
             <h2 id="signup" class="form-title"><span>or</span>Sign up</h2>
             <div class="form-box">
-                <input type="text" placeholder="Name">
-                <input type="text" placeholder="Email">
-                <input type="password" placeholder="Password">
+                <input id="name" type="text" placeholder="Name">
+                <input id="email" type="email" placeholder="Email">
+                <input id="password" type="password" placeholder="Password">
             </div>
-                <input type="button" value="Sign up" class="signup-btn">
+                <input id="signUpBtn" type="button" value="Sign up" class="signup-btn">
             <span class="with-sns">
                 Or sign up with
             </span>
@@ -29,10 +31,10 @@
             <div class="center">
                 <h2 id="login" class="form-title"><span>or</span>Log in</h2>
                 <div class="form-box">
-                    <input type="text" placeholder="Email">
+                    <input type="email" placeholder="Email">
                     <input type="password" placeholder="Password">
                 </div>
-                    <input type="button" value="Log in" class="login-btn">
+                    <input id="signInBtn" type="button" value="Log in" class="login-btn">
                 <span class="with-sns">
                     Or log in with
                 </span>
@@ -44,5 +46,6 @@
 
     </div>
     <script src="main.js"></script>
+    <script src="js/loginHandler.js"></script>
 </body>
 </html>
