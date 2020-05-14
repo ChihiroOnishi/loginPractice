@@ -15,12 +15,14 @@
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
 
+  const auth = firebase.auth();
+  var db = firebase.firestore();
+  const docRef = db.doc("users"); // TODO: init this correctly
 
-const auth = firebase.auth();
-const signUpBtn = document.getElementById("signUpBtn")
-const signInBtn = document.getElementById("signInBtn")
+const signUpBtn = document.getElementById("signUpBtn");
+const signInBtn = document.getElementById("signInBtn");
 
-
+//to be tested
 function signUp(){
     var email = document.getElementById("email");
     var password = document.getElementById("password");
@@ -43,13 +45,25 @@ function signOut(){
     alert("You are not logged in anymore");
 }
 
+function initUserDB(){
+    docRef.set({
+  //      userName: firebase.auth().currentUser
+    }).then(function(){
+        console.log("Saved Sucess!");
+    }).catch(function(error){
+        console.log("Got an error: ", error);
+    });
+}
+
+// EVENT Listeners
 signUpBtn.addEventListener('click', (e) => {
     signUp();
-})
+    initUserDB();
+});
 
 signInBtn.addEventListener('click', (e) => {
     logIn();
-})
+});
 
 auth.onAuthStateChanged(function(user){
     var user = firebase.auth().currentUser;
@@ -60,12 +74,12 @@ auth.onAuthStateChanged(function(user){
         photoUrl = user.photoUrl;
         emailVerified = user.emailVerified;
         uid = user.uid;
-        alert("Active User " + email);
+        console.log("Active User " + email);
+        window.location = "profile.html";
         //is signed in
     }
     else{
         alert("No Active User");
         //no user signed in
-        //redirect to login page
     }
 });
